@@ -26,11 +26,11 @@ class TitleInline(admin.TabularInline):
 
 @admin.register(models.User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['username', 'email', 'full_name', 'image_tag']
+    list_display = ['username', 'email', 'full_name', 'image_tag', 'is_portfolio']
     inlines = [TitleInline, LinkInline, BackgroundInline]
     readonly_fields = ('image_tag', 'password', 'last_login', 'date_joined')
     fieldsets = (
-        ('General Information', {'fields': ('username', 'email', ('first_name', 'last_name'))}),
+        ('General Information', {'fields': ('username', 'email', ('first_name', 'last_name', 'is_portfolio'))}),
         ('Optional', {
             'fields': (('image_tag', 'image'),),
             'classes': ('collapse',)
