@@ -5,6 +5,7 @@ from django.utils.html import mark_safe
 
 class User(AbstractUser):
     image = models.ImageField(upload_to='images/', null=True, blank=True)
+    is_portfolio = models.BooleanField(default=False)
 
     @property
     def full_name(self):
