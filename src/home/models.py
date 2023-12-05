@@ -4,7 +4,7 @@ from django.utils.html import mark_safe
 
 
 class User(AbstractUser):
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    image = models.ImageField(upload_to='images/user/', null=True, blank=True)
     is_portfolio = models.BooleanField(default=False)
 
     @property
@@ -23,16 +23,23 @@ class User(AbstractUser):
 class Title(models.Model):
     user = models.ForeignKey(User, related_name='titles', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
+    show_in_about = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
 
 
 class Link(models.Model):
+    class LinkChoices(models.TextChoices):
+        LINKEDIN = 'li', 'Linkedin'
+        GITHUB = 'gh', 'Github'
+        TELEGRAM = 'tel', 'Telegram'
+        EMAIL = 'em', 'Email'
+        INSTAGRAM = 'ig', 'Instagram'
+
     user = models.ForeignKey(User, related_name='links', on_delete=models.CASCADE)
-    TITLE_CHOICES = [('li', 'Linkedin'), ('gh', 'Github'), ('tel', 'Telegram'), ('em', 'Email'), ('ig', 'Instagram')]
-    title = models.CharField(max_length=255, choices=TITLE_CHOICES, unique=True)
-    url = models.URLField(max_length=255)
+    title = models.CharField(max_length=255, choices=LinkChoices.choices, unique=True)
+    url = models.CharField(max_length=255)
 
     def __str__(self):
         return f'{self.title} - {self.url}'
