@@ -24,3 +24,11 @@ def index(request):
                    }
         return render(request, 'index.html', context)
     return HttpResponse("<h1>No Portfolio Found!</h1>")
+
+
+def download_cv(request):
+    user = User.objects.filter(is_portfolio=True).select_related('resume_cv')
+    if user.exists():
+        cv = user.last().resume_cv
+        return FileResponse(open(cv.file.path, 'rb'))
+    return HttpResponse("<h1>No CV Found!</h1>")
