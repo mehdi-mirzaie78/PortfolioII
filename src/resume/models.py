@@ -14,7 +14,7 @@ class Summary(models.Model):
 
 
 class Education(models.Model):
-    user = models.ForeignKey(User, related_name='education', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='educations', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     start_year = models.CharField(max_length=4)
     end_year = models.CharField(max_length=7, default='Present')

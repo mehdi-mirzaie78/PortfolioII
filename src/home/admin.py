@@ -3,6 +3,7 @@ from django.contrib.auth.models import Group
 from . import models
 from about.admin import AboutInline, FactInline, SkillInline
 from resume.admin import SummaryInline, EducationInline, ProfessionalExperienceInline, CVInline
+from portfolio.admin import ProjectInline
 
 admin.site.unregister(Group)
 
@@ -37,6 +38,8 @@ class UserAdmin(admin.ModelAdmin):
         AboutInline, FactInline, SkillInline,
         # Resume Inlines
         SummaryInline, EducationInline, ProfessionalExperienceInline, CVInline,
+        # Portfolio Inlines
+        ProjectInline
 
     ]
     readonly_fields = ('image_tag', 'password', 'last_login', 'date_joined')
