@@ -3,20 +3,19 @@ from .models import About, Fact, Skill
 
 
 class AboutInline(admin.StackedInline):
-    classes = ['collapse']
+    classes = ["collapse"]
     model = About
-    readonly_fields = ('image_tag',)
+    readonly_fields = ("image_tag",)
     extra = 0
 
 
 class FactInline(admin.TabularInline):
-    classes = ['collapse']
+    classes = ["collapse"]
     model = Fact
     extra = 0
 
 
 class SkillInline(admin.TabularInline):
-    classes = ['collapse']
+    classes = ["collapse"]
     model = Skill
     extra = 1
-
