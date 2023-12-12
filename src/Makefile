@@ -22,7 +22,18 @@ migrate:
 	# migrate
 	python manage.py migrate
 
-all: install format lint makemigrations migrate
+collectstatic:
+	# collect static files
+	python manage.py collectstatic --noinput
 
-run:
+all: install format lint makemigrations migrate collectstatic
+
+createsuperuser:
+	# create superuser
+	python manage.py createsuperuser
+
+rundev:
 	python manage.py runserver
+
+runprod:
+	gunicorn --bind 0.0.0.0:80 config.wsgi

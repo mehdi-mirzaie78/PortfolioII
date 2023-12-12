@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-1v#=xc*6o)zw76_96&dfria&^%jf9bm2jcq*=ox69!4)jk&-b9"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -108,6 +108,8 @@ STATIC_URL = "/static/"
 
 # Directories to search for static files
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # Base directory for media files
 MEDIA_URL = "/media/"
