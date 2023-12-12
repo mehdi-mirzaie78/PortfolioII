@@ -7,7 +7,7 @@ from .models import User
 def index(request):
     user = (
         User.objects.filter(is_portfolio=True)
-        .select_related("background", "about", "fact")
+        .select_related("background", "about", "fact", "contact")
         .prefetch_related(
             "links", "titles", "skills", "educations", "professional_experiences"
         )
@@ -25,6 +25,8 @@ def index(request):
             "items"
         ).all()
         categories = skills.filter(projects__isnull=False).distinct()
+        contact = user.contact
+
         context = {
             "user": user,
             "links": links,
@@ -36,6 +38,7 @@ def index(request):
             "educations": educations,
             "professional_experiences": professional_experiences,
             "categories": categories,
+            "contact": contact,
         }
         return render(request, "index.html", context)
     return HttpResponse("<h1>No Portfolio Found!</h1>")
