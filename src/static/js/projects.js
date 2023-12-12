@@ -103,16 +103,23 @@ $.ajax({
       $("#email").val("");
       $("#subject").val("");
       $("#message").val("");
+      let timeOut = 4000;
       let alertSuccess = $(".alert-success");
       alertSuccess.removeClass("d-none");
+      setTimeout(()=>{
+        alertSuccess.addClass("d-none");
+      }, timeOut)
     
 
     },
     error: function (xhr, status, error) {
-      console.log("Error:", error);
-      let alertError = $(".alert-danger");
+
+      let timeOut = 4000;    
       alertError.removeClass("d-none");
       alertError.text(`An error occurred while sending the message.`);
+      setTimeout(()=>{
+        alertError.addClass("d-none");
+      }, timeOut)
     },
   });
 }
