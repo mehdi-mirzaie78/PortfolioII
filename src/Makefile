@@ -22,7 +22,7 @@ migrate:
 	# migrate
 	python manage.py migrate
 
-all: install format makemigrations migrate
+all: install format lint makemigrations migrate
 
 run:
 	python manage.py runserver
