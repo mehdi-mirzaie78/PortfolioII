@@ -12,14 +12,14 @@ jobs:
           python-version: 3.11.7
       - name: Install Dependencies
         run: |
-          make install
+          make -C ./src/ install
       - name: Lint with Pylint
         run: |
-          make lint
+          make -C ./src/ lint
       - name: Format Code
         run: |
-          make format
+          make -C ./src/ format
       - name: Make migrations & migrate
         run: |
-          make makemigrations && make migrate
+          make -C ./src/ makemigrations migrate
           
