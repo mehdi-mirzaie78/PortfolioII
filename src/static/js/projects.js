@@ -64,7 +64,6 @@ const projectContent = (project) => {
 function getProjects(skill = null) {
     let url = "/api/portfolio/"
     if (skill !== null) {
-        console.log(skill.toLowerCase())
         url = url + `?skill=${skill.toLowerCase()}`
     }
     $.ajax({
@@ -74,8 +73,6 @@ function getProjects(skill = null) {
         success: function (data) {
             let dataContainer = $("#portfolio-container");
             dataContainer.empty();
-            console.log(data);
-
             data.forEach((element) => {
                 htmlContent = `
           ${projectContent(element)}
@@ -89,7 +86,44 @@ function getProjects(skill = null) {
     });
 }
 
+const sendMessage = (data, url, csrfToken) => {
+$.ajax({
+    url: url,
+    type: "POST",
+    data: data,
+    dataType: "json",
+    contentType: false,
+    processData: false,
+    headers: {
+      "X-CSRFToken": csrfToken
+    },
+    success: function (data) {
+      // Clear the form
+      $("#name").val("");
+      $("#email").val("");
+      $("#subject").val("");
+      $("#message").val("");
+      let alertSuccess = $(".alert-success");
+      alertSuccess.removeClass("d-none");
+    
+
+    },
+    error: function (xhr, status, error) {
+      console.log("Error:", error);
+      let alertError = $(".alert-danger");
+      alertError.removeClass("d-none");
+      alertError.text(`An error occurred while sending the message.`);
+    },
+  });
+}
+
 $(document).ready(function () {
     // calling the function to get projects
     getProjects();
+    $("#message-form").submit(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        var formData = new FormData(this);
+        var csrfToken = jQuery("[name=csrfmiddlewaretoken]").val();
+        sendMessage(formData, "/api/send-message/", csrfToken)
+      });
 });
