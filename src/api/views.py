@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.db.models import Count
 from home.models import User
 from portfolio.models import Project
 from .serializers import ProjectSerializer, MessageSerializer
@@ -7,7 +8,7 @@ from .serializers import ProjectSerializer, MessageSerializer
 
 class ProjectView(APIView):
     def get(self, request):
-        queryset = Project.objects.all()
+        queryset = Project.objects.annotate(count=Count("skills")).order_by("-count")
         skill = request.query_params.get("skill")
         if skill and skill != "all":
             queryset = queryset.filter(skills__title__iexact=skill).distinct()
