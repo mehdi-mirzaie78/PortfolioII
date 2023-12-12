@@ -9,6 +9,7 @@ from resume.admin import (
     CVInline,
 )
 from portfolio.admin import ProjectInline
+from contact.admin import ContactInline
 
 admin.site.unregister(Group)
 
@@ -52,6 +53,8 @@ class UserAdmin(admin.ModelAdmin):
         CVInline,
         # Portfolio Inlines
         ProjectInline,
+        # Contact Inlines
+        ContactInline,
     ]
     readonly_fields = ("image_tag", "password", "last_login", "date_joined")
     fieldsets = (
