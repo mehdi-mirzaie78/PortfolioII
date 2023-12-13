@@ -151,6 +151,6 @@ CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost").spl
 CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "http://localhost").split()
 
 # Default superuser credentials
-SUPERUSER_USERNAME = str(os.getenv("SUPERUSER_USERNAME"))
-SUPERUSER_EMAIL = str(os.getenv("SUPERUSER_EMAIL"))
-SUPERUSER_PASSWORD = str(os.getenv("SUPERUSER_PASSWORD"))
+SUPERUSER_USERNAME = str(os.getenv("SUPERUSER_USERNAME", "admin"))
+SUPERUSER_EMAIL = str(os.getenv("SUPERUSER_EMAIL", "admin@email.com"))
+SUPERUSER_PASSWORD = str(os.getenv("SUPERUSER_PASSWORD", "admin"))
