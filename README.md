@@ -3,7 +3,8 @@
 # iPortfolio
 
 ## Technologies
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) 
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white) 
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 ## Main Source
 [iPortfolio](https://bootstrapmade.com/demo/iPortfolio/)
 
@@ -41,20 +42,21 @@ docker-compose up --build -d
 docker-compose down
 ```
 ### 2. Using Makefile
-1. Clone the project.
-2. Create `.env` file in `src/config` path.
-3. Modifiy `.env` file based on your database information.
-4. Create a virtual environment `python -m venv venv`.
-5. Activate the environment `source venv/bin/activate`
-6. In the root directory of project `cd` to `src` and run:
+1. Install make.
+2. Clone the project.
+3. Create `.env` file in `src/config` path.
+4. Modifiy `.env` file based on your database information.
+5. Create a virtual environment `python -m venv venv`.
+6. Activate the environment `source venv/bin/activate`
+7. In the root directory of project `cd` to `src` and run:
 ```shell
 make all
 ```
-7. Create a superuser with specified `SUPERUSER_USERNAME` & `SUPERUSER_PASSWORD` info in `.env` file:
+8. Create a superuser with specified `SUPERUSER_USERNAME` & `SUPERUSER_PASSWORD` info in `.env` file:
 ```shell
 make createsuperuser
 ```
-8. Run server:
+9. Run server:
 ```shell
 make run
 ```
