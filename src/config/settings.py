@@ -1,4 +1,8 @@
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -7,12 +11,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-1v#=xc*6o)zw76_96&dfria&^%jf9bm2jcq*=ox69!4)jk&-b9"
+SECRET_KEY = str(os.getenv("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = False if os.getenv("DEBUG", "False") == "False" else True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", ["*"]).split()
 
 LOCAL_APPS = ["home", "about", "resume", "portfolio", "contact"]
 
@@ -68,12 +72,25 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": str(os.getenv("POSTGRES_ENGINE", "django.db.backends.postgresql")),
+        "NAME": str(os.getenv("POSTGRES_DB", "postgres")),
+        "USER": str(os.getenv("POSTGRES_USER", "postgres")),
+        "PASSWORD": str(os.getenv("POSTGRES_PASSWORD", "postgres")),
+        "HOST": str(os.getenv("POSTGRES_HOST", "localhost")),
+        "PORT": int(os.getenv("POSTGRES_PORT", 5432)),
     }
 }
+
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -98,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Tehran"
 
 USE_I18N = True
 
@@ -130,4 +147,10 @@ REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",)
 }
 
-CORS_ALLOWED_ORIGINS = ("http://localhost",)
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost").split()
+CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "http://localhost").split()
+
+# Default superuser credentials
+SUPERUSER_USERNAME = str(os.getenv("SUPERUSER_USERNAME"))
+SUPERUSER_EMAIL = str(os.getenv("SUPERUSER_EMAIL"))
+SUPERUSER_PASSWORD = str(os.getenv("SUPERUSER_PASSWORD"))

@@ -25,9 +25,11 @@ pip-api==0.0.30
 pipreqs==0.4.13
 platformdirs==4.1.0
 plette==0.4.4
+psycopg2-binary==2.9.9
 pydantic==2.5.2
 pydantic_core==2.14.5
 pylint==3.0.2
+python-dotenv==1.0.0
 pytz==2023.3.post1
 requests==2.31.0
 requirementslib==3.0.0
