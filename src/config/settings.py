@@ -14,9 +14,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.getenv("DEBUG", "False") == "False" else True
+DEBUG = False if os.getenv("DEBUG", "True") == "False" else True
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", ["*"]).split()
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split()
 
 LOCAL_APPS = ["home", "about", "resume", "portfolio", "contact"]
 
@@ -151,6 +151,6 @@ CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost").spl
 CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "http://localhost").split()
 
 # Default superuser credentials
-SUPERUSER_USERNAME = str(os.getenv("SUPERUSER_USERNAME"))
-SUPERUSER_EMAIL = str(os.getenv("SUPERUSER_EMAIL"))
-SUPERUSER_PASSWORD = str(os.getenv("SUPERUSER_PASSWORD"))
+SUPERUSER_USERNAME = str(os.getenv("SUPERUSER_USERNAME", "admin"))
+SUPERUSER_EMAIL = str(os.getenv("SUPERUSER_EMAIL", "admin@email.com"))
+SUPERUSER_PASSWORD = str(os.getenv("SUPERUSER_PASSWORD", "admin"))

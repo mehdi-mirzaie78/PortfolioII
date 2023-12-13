@@ -12,21 +12,52 @@ https://github.com/mehdi-mirzaie78/iPortfolio/assets/107181484/a4321dad-0611-4e8
 
 
 ## How to run?
-### 1. Using Makefile (linux users)
+### Prerequisites
+Create a `.env` file inside `src/config` and paste this content and modify it based on your project:
+```env
+SECRET_KEY=<YOUR_SECRET_KEY>
+DEBUG=False
+ALLOWED_HOSTS=*
+POSTGRES_ENGINE=django.db.backends.postgresql
+POSTGRES_DB=<YOUR_DATABASE_NAME>
+POSTGRES_USER=<YOUR_DATABASE_USER>
+POSTGRES_PASSWORD=<YOUR_DATABASE_PASSWORD>
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+CORS_ALLOWED_ORIGINS=http://localhost http://0.0.0.0
+CSRF_TRUSTED_ORIGINS=<https://*.your_domain.com> http://0.0.0.0
+SUPERUSER_USERNAME=<YOUR_SUPERUSER_USERNAME>
+SUPERUSER_PASSWORD=<YOUR_SUPERUSER_PASSWORD>
+SUPERUSER_EMAIL=<YOUR_SUPERUSER_EMAIL>
+```
+### 1. Using Docker
+1. Install `docker` and `docker compose`
+2. In directory that `docker-compose.yml` exists run:
+```shell
+docker-compose up --build -d
+```
+3. For stopping server run: 
+```shell
+docker-compose down
+```
+### 2. Using Makefile
 1. Clone the project.
-2. Create a virtual environment `python -m venv venv`.
-3. Activate the environment `source venv/bin/activate`
-4. In the root directory of project `cd` to `src` and run:
+2. Create `.env` file in `src/config` path.
+3. Modifiy `.env` file based on your database information.
+4. Create a virtual environment `python -m venv venv`.
+5. Activate the environment `source venv/bin/activate`
+6. In the root directory of project `cd` to `src` and run:
 ```shell
 make all
 ```
-5. Create a superuser and enter username and password:
+7. Create a superuser with specified `SUPERUSER_USERNAME` & `SUPERUSER_PASSWORD` info in `.env` file:
 ```shell
 make createsuperuser
 ```
-6. Run server:
+8. Run server:
 ```shell
 make run
 ```
-6. Open up your browser in `localhost:8000/admin`. 
-7. Use your credentials to login and add all of your information.
+## Enter information:
+1. Open up your browser in `localhost:80/admin`. 
+2. Use your credentials to login and add all of your information.
